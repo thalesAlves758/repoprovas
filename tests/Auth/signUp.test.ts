@@ -35,7 +35,7 @@ describe('### POST /sign-up ###', () => {
     const response = await request(app).post('/sign-up').send(signUpBody);
 
     expect(response.status).toEqual(422);
-    expect(response.body).toContain('Validation error:');
+    expect(response.text).toContain('Validation error:');
   });
 
   afterAll(async () => {
