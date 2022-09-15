@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node dist/server.js",
     "dev": "nodemon src/server.ts",
-    "test": "jest --no-cache",
+    "test": "jest -i --no-cache",
     "build": "tsc"
   },
   "repository": {
