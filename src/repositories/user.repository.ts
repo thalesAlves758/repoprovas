@@ -1,6 +1,11 @@
 import { User } from '@prisma/client';
 import { prisma } from '../config/database';
+import { SignUpInsertData } from '../types/signUp.types';
 
 export async function findByEmail(email: string): Promise<User | null> {
   return prisma.user.findUnique({ where: { email } });
+}
+
+export async function create(data: SignUpInsertData): Promise<void> {
+  await prisma.user.create({ data });
 }
