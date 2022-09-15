@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node dist/server.js",
     "dev": "nodemon src/server.ts",
-    "test": "dotenv -e .env.test jest -i --no-cache",
+    "test": "dotenv -e .env.test -- npx prisma migrate dev && jest -i --no-cache",
     "build": "tsc"
   },
   "repository": {
