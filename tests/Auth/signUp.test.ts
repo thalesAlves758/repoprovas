@@ -26,7 +26,7 @@ describe('### POST /sign-up ###', () => {
     const response = await request(app).post('/sign-up').send(signUpBody);
 
     expect(response.status).toEqual(409);
-    expect(response.body).toEqual('Email already in use');
+    expect(response.text).toEqual('Email already in use');
   });
 
   it('should return 422 status code', async () => {
