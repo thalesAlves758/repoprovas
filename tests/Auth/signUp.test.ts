@@ -13,7 +13,7 @@ describe('### POST /sign-up ###', () => {
 
   it('should return 200 status code', async () => {
     const signUpBody = generateSignUpBody();
-    
+
     const response = await request(app).post('/sign-up').send(signUpBody);
 
     expect(response.status).toEqual(201);
@@ -26,6 +26,7 @@ describe('### POST /sign-up ###', () => {
     const response = await request(app).post('/sign-up').send(signUpBody);
 
     expect(response.status).toEqual(409);
+    expect(response.body).toEqual('Email already in use');
   });
 
   it('should return 422 status code', async () => {
@@ -34,9 +35,10 @@ describe('### POST /sign-up ###', () => {
     const response = await request(app).post('/sign-up').send(signUpBody);
 
     expect(response.status).toEqual(422);
+    expect(response.body).toContain('Validation error:');
   });
 
   afterAll(async () => {
     await prisma.$disconnect();
-  })
+  });
 });
