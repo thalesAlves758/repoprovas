@@ -3,3 +3,4 @@ dist
 /*.json
 .env.example
 .env
+tests/
