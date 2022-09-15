@@ -58,16 +58,19 @@ model TeacherDiscipline {
   teacherId    Int
   Discipline   Discipline @relation(fields: [disciplineId], references: [id])
   disciplineId Int
+  tests        Test[]
 
   @@map("teachersDisciplines")
 }
 
 model Test {
-  id         Int      @id @default(autoincrement())
-  name       String
-  pdfUrl     String
-  Category   Category @relation(fields: [categoryId], references: [id])
-  categoryId Int
+  id                  Int               @id @default(autoincrement())
+  name                String
+  pdfUrl              String
+  Category            Category          @relation(fields: [categoryId], references: [id])
+  categoryId          Int
+  TeacherDiscipline   TeacherDiscipline @relation(fields: [teacherDisciplineId], references: [id])
+  teacherDisciplineId Int
 
   @@map("tests")
 }
