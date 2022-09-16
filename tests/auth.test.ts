@@ -43,9 +43,11 @@ describe('### POST /sign-up ###', () => {
 
 describe('### POST /sign-in ###', () => {
   it('should return 200 status code and a token in the response', async () => {
-    const user = await insertRandomUser();
+    const { email, originalPassword: password } = await insertRandomUser();
 
-    const response = await request(app).post('/sign-in').send(user);
+    const response = await request(app)
+      .post('/sign-in')
+      .send({ email, password });
 
     expect(response.status).toEqual(200);
     expect(response.body).toHaveProperty('token');
