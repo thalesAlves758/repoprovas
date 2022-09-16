@@ -48,7 +48,7 @@ describe('### POST /sign-in ###', () => {
     const response = await request(app).post('/sign-in').send(user);
 
     expect(response.status).toEqual(200);
-    expect(response.body).toMatchObject({ token: '' });
+    expect(response.body).toHaveProperty('token');
   });
 
   it('should return 422 status code and a validation error message', async () => {
