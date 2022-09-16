@@ -8,3 +8,11 @@ export function generateToken(payload: any): string {
     expiresIn: '1d',
   });
 }
+
+export function validateToken<T>(token: string): T | null {
+  try {
+    return jwt.verify(token, process.env.JWT_SECRET ?? '') as T;
+  } catch (error) {
+    return null;
+  }
+}
