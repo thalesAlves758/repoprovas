@@ -1,3 +1,5 @@
+import { faker } from '@faker-js/faker';
+import { Test } from '@prisma/client';
 import request from 'supertest';
 import app from '../src/app';
 import { prisma } from '../src/config/database';
@@ -43,7 +45,7 @@ describe('### POST /tests ###', () => {
 
     const response = await request(app)
       .post('/tests')
-      .set({ Authorization: '' })
+      .set({ Authorization: `Bearer ${faker.random.word()}` })
       .send(testBody);
 
     expect(response.status).toEqual(401);
@@ -161,7 +163,13 @@ describe('### POST /tests ###', () => {
       .send(testBody);
 
     expect(response.status).toEqual(201);
-    expect(response.body).toHaveProperty([...Object.keys(testBody), 'id']);
+    expect(response.body).toMatchObject({
+      id: 1,
+      categoryId: testBody.categoryId,
+      name: testBody.name,
+      pdfUrl: testBody.pdfUrl,
+      teacherDisciplineId: 1,
+    });
   });
 });
 
