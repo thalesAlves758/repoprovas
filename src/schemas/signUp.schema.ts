@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { SignUpBodyData } from '../types/signUp.types';
+import { SignUpBodyData } from '../types/auth.types';
 
 const signUpSchema = Joi.object<SignUpBodyData>({
   email: Joi.string().email().required(),

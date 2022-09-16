@@ -2,7 +2,7 @@ import { User } from '@prisma/client';
 import { HttpError } from '../exceptions/http.exception';
 import { create, findByEmail } from '../repositories/user.repository';
 import { HttpErrorType } from '../types/http.types';
-import { SignUpInsertData } from '../types/signUp.types';
+import { SignUpInsertData } from '../types/auth.types';
 import { encryptPassword } from '../utils/bcrypt.utils';
 
 export async function getUserByEmail(email: string): Promise<User | null> {

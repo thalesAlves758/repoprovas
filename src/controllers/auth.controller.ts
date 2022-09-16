@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { HttpStatus } from '../types/http.types';
-import { SignUpBodyData } from '../types/signUp.types';
+import { SignUpBodyData } from '../types/auth.types';
 import * as authServices from '../services/auth.services';
 
 export async function signUp(req: Request, res: Response) {
