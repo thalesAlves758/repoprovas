@@ -1,10 +1,7 @@
-import { prisma } from '../../src/config/database';
-import { generateSignUpBody } from '../factories/auth.factory';
-import app from '../../src/app';
+import { prisma } from '../src/config/database';
+import { generateSignUpBody } from './factories/auth.factory';
+import app from '../src/app';
 import request from 'supertest';
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 describe('### POST /sign-up ###', () => {
   beforeEach(async () => {
