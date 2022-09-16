@@ -7,12 +7,12 @@ export async function insertRandomUser() {
 
   const salt = 10;
 
-  await prisma.user.create({
+  const createdUser = await prisma.user.create({
     data: {
       email: user.email,
       password: bcrypt.hashSync(user.password, salt),
     },
   });
 
-  return user;
+  return { ...createdUser, originalPassword: user.password };
 }
