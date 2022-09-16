@@ -9,3 +9,7 @@ export type SignInBodyData = SignUpInsertData;
 export type SignInResponse = {
   token: string;
 };
+
+export type JwtUserPayload = {
+  userId: number;
+};
