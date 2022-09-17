@@ -66,7 +66,7 @@ describe('### POST /tests ###', () => {
 
     const response = await request(app)
       .post('/tests')
-      .set({ Authorization: token })
+      .set({ Authorization: `Bearer ${token}` })
       .send(testBody);
 
     expect(response.status).toEqual(404);
@@ -87,7 +87,7 @@ describe('### POST /tests ###', () => {
 
     const response = await request(app)
       .post('/tests')
-      .set({ Authorization: token })
+      .set({ Authorization: `Bearer ${token}` })
       .send(testBody);
 
     expect(response.status).toEqual(404);
@@ -110,7 +110,7 @@ describe('### POST /tests ###', () => {
 
     const response = await request(app)
       .post('/tests')
-      .set({ Authorization: token })
+      .set({ Authorization: `Bearer ${token}` })
       .send(testBody);
 
     expect(response.status).toEqual(404);
@@ -134,7 +134,7 @@ describe('### POST /tests ###', () => {
 
     const response = await request(app)
       .post('/tests')
-      .set({ Authorization: token })
+      .set({ Authorization: `Bearer ${token}` })
       .send(testBody);
 
     expect(response.status).toEqual(400);
@@ -159,7 +159,7 @@ describe('### POST /tests ###', () => {
 
     const response = await request(app)
       .post('/tests')
-      .set({ Authorization: token })
+      .set({ Authorization: `Bearer ${token}` })
       .send(testBody);
 
     expect(response.status).toEqual(201);
