@@ -17,3 +17,10 @@ export function generateTestBody({
     teacherId: teacherId ?? Number(faker.random.numeric()),
   };
 }
+
+export function generateTest() {
+  return {
+    name: faker.random.words(3),
+    pdfUrl: faker.internet.url(),
+  };
+}
