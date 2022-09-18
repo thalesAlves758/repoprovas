@@ -12,5 +12,10 @@ testRouter.post(
   validateToken,
   testController.create
 );
+testRouter.get(
+  '/tests/by/discipline',
+  validateToken,
+  testController.getGroupedByDiscipline
+);
 
 export default testRouter;
