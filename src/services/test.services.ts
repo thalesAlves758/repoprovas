@@ -1,9 +1,16 @@
 import { TeacherDiscipline, Test } from '@prisma/client';
 import { prisma } from '../config/database';
 import { HttpError } from '../exceptions/http.exception';
-import { insert } from '../repositories/test.repository';
+import {
+  findGroupedByDiscipline,
+  insert,
+} from '../repositories/test.repository';
 import { HttpErrorType } from '../types/http.types';
-import { TestBodyData, TestInsertData } from '../types/test.types';
+import {
+  TestBodyData,
+  TestGroupedByDisciplineData,
+  TestInsertData,
+} from '../types/test.types';
 import { getCategoryById } from './category.services';
 import { getDisciplineById } from './discipline.services';
 import { getTeacherById } from './teacher.services';
@@ -57,4 +64,10 @@ export async function createTest({
   };
 
   return insert(insertData);
+}
+
+export async function getTestsGroupedByDiscipline(): Promise<
+  TestGroupedByDisciplineData[]
+> {
+  return findGroupedByDiscipline();
 }
