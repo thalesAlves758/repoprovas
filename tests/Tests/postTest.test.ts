@@ -1,14 +1,14 @@
 import { faker } from '@faker-js/faker';
 import { Test } from '@prisma/client';
 import request from 'supertest';
-import app from '../src/app';
-import { prisma } from '../src/config/database';
-import { generateTestBody } from './factories/test.factory';
-import { authenticateRandomUser } from './utils/auth.utils';
-import { insertRandomCategory } from './utils/category.utils';
-import { insertRandomDiscipline } from './utils/discipline.utils';
-import { insertRandomTeacher } from './utils/teacher.util';
-import { insertRandomTeacherDiscipline } from './utils/teacherDiscipline.utils';
+import app from '../../src/app';
+import { prisma } from '../../src/config/database';
+import { generateTestBody } from '../factories/test.factory';
+import { authenticateRandomUser } from '../utils/auth.utils';
+import { insertRandomCategory } from '../utils/category.utils';
+import { insertRandomDiscipline } from '../utils/discipline.utils';
+import { insertRandomTeacher } from '../utils/teacher.util';
+import { insertRandomTeacherDiscipline } from '../utils/teacherDiscipline.utils';
 
 beforeEach(async () => {
   await prisma.$executeRaw`
