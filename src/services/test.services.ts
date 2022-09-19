@@ -3,12 +3,14 @@ import { prisma } from '../config/database';
 import { HttpError } from '../exceptions/http.exception';
 import {
   findGroupedByDiscipline,
+  findGroupedByTeacher,
   insert,
 } from '../repositories/test.repository';
 import { HttpErrorType } from '../types/http.types';
 import {
   TestBodyData,
   TestGroupedByDisciplineData,
+  TestGroupedByTeacherData,
   TestInsertData,
 } from '../types/test.types';
 import { getCategoryById } from './category.services';
@@ -70,4 +72,10 @@ export async function getTestsGroupedByDiscipline(): Promise<
   TestGroupedByDisciplineData[]
 > {
   return findGroupedByDiscipline();
+}
+
+export async function getTestsGroupedByTeacher(): Promise<
+  TestGroupedByTeacherData[]
+> {
+  return findGroupedByTeacher();
 }
