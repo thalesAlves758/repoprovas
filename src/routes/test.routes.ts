@@ -17,5 +17,10 @@ testRouter.get(
   validateToken,
   testController.getGroupedByDiscipline
 );
+testRouter.get(
+  '/tests/groupedBy/teacher',
+  validateToken,
+  testController.getGroupedByTeacher
+);
 
 export default testRouter;
