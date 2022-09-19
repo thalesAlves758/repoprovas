@@ -18,9 +18,9 @@ beforeEach(async () => {
   `;
 });
 
-describe('### GET /tests/by/discipline ###', () => {
+describe('### GET /tests/groupedBy/discipline ###', () => {
   it(`should return 401 status code and an error message when don't send token`, async () => {
-    const response = await request(app).get('/tests/by/discipline');
+    const response = await request(app).get('/tests/groupedBy/discipline');
 
     expect(response.status).toEqual(401);
     expect(response.text).toEqual('A token is required');
@@ -28,7 +28,7 @@ describe('### GET /tests/by/discipline ###', () => {
 
   it(`should return 401 status code and an error message when send an invalid token`, async () => {
     const response = await request(app)
-      .get('/tests/by/discipline')
+      .get('/tests/groupedBy/discipline')
       .set({ Authorization: `Bearer ${faker.random.word()}` });
 
     expect(response.status).toEqual(401);
@@ -42,7 +42,7 @@ describe('### GET /tests/by/discipline ###', () => {
     ]);
 
     const response = await request(app)
-      .get('/tests/by/discipline')
+      .get('/tests/groupedBy/discipline')
       .set({ Authorization: `Bearer ${token}` });
 
     expect(response.status).toEqual(200);
