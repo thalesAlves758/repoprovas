@@ -9,3 +9,7 @@ export async function authenticateRandomUser() {
 
   return jwt.sign({ userId: id }, process.env.JWT_SECRET ?? '');
 }
+
+export function generateRandomValidToken(payload: any) {
+  return jwt.sign(payload, process.env.JWT_SECRET ?? '');
+}
