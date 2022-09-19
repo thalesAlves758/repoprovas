@@ -14,9 +14,9 @@ export async function findGroupedByDiscipline(): Promise<
   TestGroupedByDisciplineData[]
 > {
   return prisma.$queryRaw`
-    SELECT 
-      "terms".number AS "term",
-      ARRAY(
+    SELECT
+      "outerTerms".*,
+      ARRAY (
         SELECT row_to_json("disciplineRow")
         FROM (
           SELECT
@@ -24,34 +24,39 @@ export async function findGroupedByDiscipline(): Promise<
             ARRAY (
               SELECT row_to_json("categoryRow")
               FROM (
-                SELECT 
+                SELECT
                   "categories".*,
                   ARRAY (
                     SELECT row_to_json("testRow")
                     FROM (
                       SELECT
-                        "tests".*,
+                        "tests".id,
+                        "tests".name,
+                        "tests"."pdfUrl",
+                        "tests"."categoryId",
                         "teachers".name AS "teacher"
                       FROM "tests"
-                      JOIN "teachersDisciplines" ON "teachersDisciplines".id = "tests"."teacherDisciplineId"
-                      JOIN "teachers" ON "teachers".id = "teachersDisciplines"."teacherId"
-                      WHERE "tests"."categoryId" = "categories".id
+                      JOIN "teachersDisciplines" "innerTeachersDisciplines" ON "innerTeachersDisciplines".id = "tests"."teacherDisciplineId"
+                      JOIN "teachers" ON "innerTeachersDisciplines"."teacherId" = "teachers".id
+                      WHERE
+                        "categories".id = "tests"."categoryId"
+                        AND "tests"."teacherDisciplineId" = "teachersDisciplines".id
                     ) "testRow"
                   ) AS "tests"
-                FROM categories
+                FROM "categories"
                 JOIN "tests" ON "tests"."categoryId" = "categories".id
-                JOIN "teachersDisciplines" ON "tests"."teacherDisciplineId" = "teachersDisciplines".id
-                WHERE "disciplines".id = "teachersDisciplines"."disciplineId"
+                JOIN "teachersDisciplines" ON "teachersDisciplines".id = "tests"."teacherDisciplineId"
+                WHERE "teachersDisciplines"."disciplineId" = "disciplines".id
+                GROUP BY "categories".id, "teachersDisciplines".id 
               ) "categoryRow"
             ) AS "categories"
           FROM "disciplines"
-          WHERE "disciplines"."termId" = "terms".id
+          WHERE "disciplines"."termId" = "outerTerms".id
+          GROUP BY "disciplines".id
         ) "disciplineRow"
       ) AS "disciplines"
-    FROM "terms"
-    LEFT JOIN "disciplines" ON "disciplines"."termId" = "terms".id
-    GROUP BY "terms".id
-    ORDER BY "terms".number
+    FROM "terms" "outerTerms"
+    GROUP BY "outerTerms".id
   `;
 }
 
