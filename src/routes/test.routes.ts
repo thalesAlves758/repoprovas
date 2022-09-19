@@ -13,7 +13,7 @@ testRouter.post(
   testController.create
 );
 testRouter.get(
-  '/tests/by/discipline',
+  '/tests/groupedBy/discipline',
   validateToken,
   testController.getGroupedByDiscipline
 );
