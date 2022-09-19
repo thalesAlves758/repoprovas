@@ -17,3 +17,11 @@ export type TestGroupedByDisciplineData = {
         }[];
     }[];
 };
+
+export type TestGroupedByTeacherData = {
+  teacher: string;
+  categories: Category &
+    {
+      tests: Test & { discipline: string }[];
+    }[];
+};
