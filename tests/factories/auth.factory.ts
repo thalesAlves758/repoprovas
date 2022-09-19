@@ -9,3 +9,10 @@ export function generateSignUpBody() {
     confirmPassword: password,
   };
 }
+
+export function generateSignInBody() {
+  return {
+    email: faker.internet.email(),
+    password: faker.internet.password(),
+  };
+}
