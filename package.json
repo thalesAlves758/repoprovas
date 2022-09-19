@@ -9,6 +9,9 @@
     "test": "dotenv -e .env.test -- npx prisma migrate dev && jest -i --no-cache",
     "build": "tsc"
   },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },  
   "repository": {
     "type": "git",
     "url": "git+https://github.com/thalesAlves758/repoprovas.git"
